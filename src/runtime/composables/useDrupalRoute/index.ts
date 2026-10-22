@@ -127,10 +127,17 @@ export async function useDrupalRoute<T extends object = object>(
     return {}
   })
 
+  const redirect = computed<string | undefined>(() =>
+    query.value?.route && 'redirect' in query.value.route
+      ? query.value.route.path || undefined
+      : undefined,
+  )
+
   const ctx: UseDrupalRoute<T | undefined> = {
     entity,
     drupalRoute,
     metatags,
+    redirect,
   }
 
   const nuxtRoute = providedRoute ?? useRoute()

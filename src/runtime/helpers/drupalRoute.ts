@@ -43,4 +43,13 @@ export type UseDrupalRoute<T> = {
    * The mapped meta tags.
    */
   metatags: ComputedRef<SerializableHead>
+
+  /**
+   * The target path if the route is a redirect, else undefined.
+   *
+   * On the client the browser follows the redirect asynchronously. Use this
+   * to render a message while the redirect is in progress, or when the browser
+   * stays on the page (e.g. when the target is a file download).
+   */
+  redirect: ComputedRef<string | undefined>
 }
